@@ -1,0 +1,13 @@
+version: v1
+
+name: github.com/partyzanex/shortlink
+
+lint:
+  use:
+    - DEFAULT
+  ignore:
+    - google
+
+breaking:
+  use:
+    - FILE

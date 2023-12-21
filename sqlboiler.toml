@@ -1,0 +1,24 @@
+pkgname="boiler"
+output="internal/boiler"
+no-tests = true
+no-auto-timestamps = true
+
+[psql]
+  dbname="short"
+  host="localhost"
+  port=5432
+  user="postgres"
+  pass="postgres"
+  sslmode="disable"
+  schema="public"
+  blacklist=[
+    "goose_db_version",
+    "link_p0",
+    "link_p1",
+    "link_p2",
+    "link_p3",
+    "link_p4",
+    "link_p5",
+    "link_p6",
+    "link_p7",
+  ]

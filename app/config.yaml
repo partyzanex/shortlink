@@ -1,0 +1,77 @@
+app:
+  name: "shortlink"
+  desc: "Service for creating short links"
+  env:
+    - local
+    - dev
+    - prod
+
+flags:
+  log-level:
+    type: enum
+    enum:
+      - debug
+      - info
+      - warning
+      - error
+      - fatal
+      - panic
+    value:
+      local: debug
+      dev: debug
+      prod: info
+  debug-host:
+    type: string
+    value:
+      local: 0.0.0.0:8084
+      dev: 0.0.0.0:84
+      prod: 0.0.0.0:84
+  http-host:
+    type: string
+    value:
+      local: 0.0.0.0:8080
+      dev: 0.0.0.0:80
+      prod: 0.0.0.0:80
+  grpc-host:
+    type: string
+    value:
+      local: 0.0.0.0:8082
+      dev: 0.0.0.0:82
+      prod: 0.0.0.0:82
+  grpc-reflection:
+    type: bool
+    value:
+      local: true
+      dev: true
+      prod: false
+  postgres-url:
+    type: string
+    value:
+      local: postgresql://postgres:postgres@localhost:5432/short?sslmode=disable
+  postgres-read-timeout:
+    type: duration
+    value: 3s
+  postgres-write-timeout:
+    type: duration
+    value: 3s
+  hash-length:
+    type: int
+    value: 3
+
+  admin-http-host:
+    type: string
+    value: 0.0.0.0
+  admin-http-port:
+    type: uint
+    value: 9900
+  admin-base-url:
+    type: string
+    value: /admin
+  admin-view-path:
+    type: string
+    env: false
+    value: ./internal/admin/views
+  admin-assets-path:
+    type: string
+    env: false
+    value: ./internal/admin/assets
