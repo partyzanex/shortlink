@@ -1,0 +1,140 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "shorts/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Shorts"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/create": {
+      "post": {
+        "operationId": "Shorts_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/shortsCreateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/shortsCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Shorts"
+        ]
+      }
+    },
+    "/v1/get/{shortLink}": {
+      "get": {
+        "operationId": "Shorts_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/shortsGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shortLink",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Shorts"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "shortsCreateRequest": {
+      "type": "object",
+      "properties": {
+        "targetUrl": {
+          "type": "string"
+        },
+        "expiredAt": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "shortsCreateResponse": {
+      "type": "object",
+      "properties": {
+        "shortLink": {
+          "type": "string"
+        }
+      }
+    },
+    "shortsGetResponse": {
+      "type": "object",
+      "properties": {
+        "targetUrl": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

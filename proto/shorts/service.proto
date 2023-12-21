@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package shorts;
+
+option go_package = "github.com/partyzanex/shortlink/pkg/proto/go/shorts;pb";
+
+import "google/api/annotations.proto";
+
+service Shorts {
+  rpc Create(CreateRequest) returns (CreateResponse) {
+    option (google.api.http) = {
+      post: "/v1/create"
+      body: "*"
+    };
+  }
+
+  rpc Get(GetRequest) returns (GetResponse) {
+    option (google.api.http) = {
+      get: "/v1/get/{short_link}"
+    };
+  }
+}
+
+message GetRequest {
+  string short_link = 1;
+}
+
+message GetResponse {
+  string target_url = 1;
+}
+
+message CreateRequest {
+  string target_url = 1;
+  optional int64 expired_at = 2;
+}
+
+message CreateResponse {
+  string short_link = 1;
+}
